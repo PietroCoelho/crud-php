@@ -6,22 +6,29 @@ namespace App\Core;
 abstract class Controller
 {
     public array $parametros;
+    public $class;
 
     public function __construct()
     {
     }
 
-    public function index(array $parametros = []): array
+    /**
+     * Metodo Get
+     */
+    public function index(array $parametros = [])
     {
-        $this->setParams($parametros);
-        return $this->parametros;
     }
 
+    /**
+     * Metodo Post
+     */
     public function store(array $parametros = [])
     {
-        $this->setParams($parametros);
     }
 
+    /**
+     * Setando os parâmetros vindos do formulário
+     */
     public function setParams(array $parametros): void
     {
         $this->parametros = $parametros;
