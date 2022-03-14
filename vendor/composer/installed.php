@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '07a6c05177ebd2d73c31eafe82dde50df2c98e82',
+    'reference' => '837685f11a97d0a0004af4e300d92683cd28cc56',
     'name' => 'crud/php',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '07a6c05177ebd2d73c31eafe82dde50df2c98e82',
+      'reference' => '837685f11a97d0a0004af4e300d92683cd28cc56',
     ),
   ),
 );

@@ -1,23 +1,11 @@
 <?php
-
-/**
- * Adicionando autoload a página principal
- */
-
-use App\Entity\Contato;
-
+// Obrigatório para chamada das classes
 require './vendor/autoload.php';
-include './template/header.php';
-include './includes/formulario.php';
-include './template/footer.php';
-
-
-/**
- * verificação simples
- * Válidação de dados passados
- */
-if (!empty($_POST['nome']) && !empty($_POST['numero']) && !empty($_POST['email'])) {
-
-    $contato = new Contato();
-    $contato->save($_POST);
+// Obrigatório para chamada das classes
+$params = $_POST;
+if (isset($params) && !empty($params)) {
+    
 }
+include './template/header.php';
+include './views/form.php';
+include './template/footer.php';
