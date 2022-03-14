@@ -9,7 +9,7 @@ class Usuario extends DB
 
     public function __construct()
     {
-        parent::__construct();
+        parent::__construct('telefone');
     }
 
     public function getList(array $parametros)

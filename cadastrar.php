@@ -10,6 +10,8 @@ $parametros = $_POST;
 if (isset($parametros) && !empty($parametros)) {
     $user = new UsuarioController();
     $user->store($parametros);
+    header('location: index.php?status=success');
+    exit;
 }
 include './template/header.php';
 include './views/form.php';

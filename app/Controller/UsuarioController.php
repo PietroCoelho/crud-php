@@ -21,5 +21,6 @@ class UsuarioController extends Controller
     public function store(array $parametros = [])
     {
         $this->setParams($parametros);
+        return $this->class->insert($this->parametros);
     }
 }

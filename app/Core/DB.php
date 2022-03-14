@@ -21,6 +21,32 @@ class DB
         $this->setConnection();
     }
 
+
+    private function executar($query, $parametros = [])
+    {
+        try {
+
+            $statement = $this->connection->prepare($query);
+            $statement->execute($parametros);
+            return $statement;
+        } catch (PDOException $e) {
+            die("ERROR: {$e->getMessage()}");
+        }
+    }
+
+    public function insert(array $parametros)
+    {
+        $fields = array_keys($parametros);
+        $values = array_values($parametros);
+
+        $binds = array_pad([], count($fields), '?');
+        $query = 'INSERT INTO ' . $this->table . ' (' . implode(',', $fields) . ') VALUES (' . implode(',', $binds) . ')';
+        $this->executar($query, $values);
+
+        return $this->connection->lastInsertId();
+    }
+
+
     private function setConnection()
     {
         try {
