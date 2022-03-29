@@ -12,12 +12,10 @@ class DB
     const USER = 'postgres';
     const PASS = '1t4rg3t';
 
-    private $table;
     private $connection;
 
-    public function __construct($table = null)
+    public function __construct()
     {
-        $this->table =  $table;
         $this->setConnection();
     }
 
@@ -34,8 +32,15 @@ class DB
         }
     }
 
+    public function select($fields, $table)
+    {
+        $query = 'SELECT ' . $fields . ' FROM ' . $table ;
+        return $this->executar($query);
+    }
+
     public function insert(array $parametros)
     {
+        $parametros['id'] = rand(1,99999);
         $fields = array_keys($parametros);
         $values = array_values($parametros);
 
@@ -43,7 +48,7 @@ class DB
         $query = 'INSERT INTO ' . $this->table . ' (' . implode(',', $fields) . ') VALUES (' . implode(',', $binds) . ')';
         $this->executar($query, $values);
 
-        return $this->connection->lastInsertId();
+        return 'sucesso';
     }
 
 

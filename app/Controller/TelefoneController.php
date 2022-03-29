@@ -3,19 +3,23 @@
 namespace App\Controller;
 
 use App\Core\Controller;
-use App\Model\Usuario;
+use App\Model\Telefone;
 
-class UsuarioController extends Controller
+
+class TelefoneController extends Controller
 {
     public function  __construct()
     {
-        $this->class = new Usuario();
+        $this->class = new Telefone();
         parent::__construct();
     }
 
 
     public function index(array $parametros = [])
     {
+        
+        $rs = $this->class->getList();
+        return $rs;
     }
 
     public function store(array $parametros = [])
