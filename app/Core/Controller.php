@@ -15,22 +15,22 @@ abstract class Controller
     /**
      * Metodo Get
      */
-    public function index(array $parametros = [])
+    public function index()
     {
     }
 
     /**
      * Metodo Post
      */
-    public function store(array $parametros = [])
+    public function store(array $params = [])
     {
     }
 
     /**
      * Setando os parâmetros vindos do formulário
      */
-    public function setParams(array $parametros): void
+    public function setParams(array $params): void
     {
-        $this->parametros = $parametros;
+        $this->params = $params;
     }
 }

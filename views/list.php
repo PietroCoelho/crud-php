@@ -17,6 +17,8 @@
                     <td><?php echo $data['nome'] ?></td>
                     <td><?php echo $data['email'] ?></td>
                     <td><?php echo $data['numero'] ?></td>
+                    <td><a href="editar.php?id=" <?php echo $data['id'] ?>><button class="btn btn-primary">Editar</button></a></td>
+                    <td><a href="excluir.php?id=" <?php echo $data['id'] ?>><button class="btn btn-danger">Excluir</button></a></td>
                 </tr>
             <?php endforeach ?>
         </tbody>

@@ -3,16 +3,21 @@
 require './vendor/autoload.php';
 // Obrigatório para chamada das classes
 
-use App\Controller\TelefoneController;
+define('TITLE', 'Cadastrar Entrega');
+
+use App\Controller\DeliverieController;
 
 
-$parametros = $_POST;
-if (isset($parametros) && !empty($parametros)) {
-    $telefone = new TelefoneController();
-    $telefone->store($parametros);
+
+$params = $_POST;
+
+if (isset($params) && !empty($params)) {
+    $telefone = new DeliverieController();
+    $telefone->store($params);
     header('location: index.php?status=success');
     exit;
 }
+
 include './template/header.php';
 include './views/form.php';
 include './template/footer.php';

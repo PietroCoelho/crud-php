@@ -1,14 +1,14 @@
 <?php
 // Obrigatório para chamada das classes
 
-use App\Controller\TelefoneController;
+use App\Controller\DeliverieController;
 
 require './vendor/autoload.php';
 // Obrigatório para chamada das classes
 
-$user = new TelefoneController();
-$rs = $user->index();
+$rsDelivery = new DeliverieController();
+$rsDelivery->index();
 
 include './template/header.php';
-include './views/listagem.php';
+include './views/list.php';
 include './template/footer.php';

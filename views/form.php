@@ -1,5 +1,5 @@
 <div class="container">
-    <h3>Inserir Informacao</h3>
+    <h2 class="mt-3"><? echo TITLE ?></h2>
     <form method="POST">
         <div class="form-group">
             <input type="hidden" name="id">

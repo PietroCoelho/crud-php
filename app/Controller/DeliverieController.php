@@ -3,22 +3,22 @@
 namespace App\Controller;
 
 use App\Core\Controller;
-use App\Model\Telefone;
+use App\Model\Deliverie;
 
 
-class TelefoneController extends Controller
+
+class DeliverieController extends Controller
 {
     public function  __construct()
     {
-        $this->class = new Telefone();
-        parent::__construct();
+        $this->class = new Deliverie();
     }
 
 
-    public function index(array $parametros = [])
+    public function index()
     {
         
-        $rs = $this->class->getList();
+        $rs = $this->class->getDeliveries();
         return $rs;
     }
 
