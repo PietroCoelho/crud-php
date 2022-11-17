@@ -30,7 +30,7 @@ class DB
      * Senha de acesso
      * @var string
      */
-    const PASS = '1t4rg3t';
+    const PASS = '123456';
 
     /**
      * Nome da tabela a ser manipulada
@@ -46,6 +46,7 @@ class DB
 
     public function __construct(string $table = null)
     {
+        $this->table = $table;
         $this->setConnection();
     }
 

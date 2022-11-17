@@ -3,22 +3,25 @@
 
         <thead>
             <tr>
-                <th>codigo</th>
-                <th>nome</th>
-                <th>email</th>
-                <th>numero</th>
+                <th>Codigo</th>
+                <th>Titulo</th>
+                <th>Descricao</th>
+                <th>Data de Entrega</th>
+                <th>Entrega Concluida</th>
+                <th colspan="2">Ações</th>
             </tr>
         </thead>
 
         <tbody>
-            <?php foreach ($rs as $data) : ?>
+            <?php foreach ($rsDelivery as $delivery) : ?>
                 <tr>
-                    <td><?php echo $data['id'] ?></td>
-                    <td><?php echo $data['nome'] ?></td>
-                    <td><?php echo $data['email'] ?></td>
-                    <td><?php echo $data['numero'] ?></td>
-                    <td><a href="editar.php?id=" <?php echo $data['id'] ?>><button class="btn btn-primary">Editar</button></a></td>
-                    <td><a href="excluir.php?id=" <?php echo $data['id'] ?>><button class="btn btn-danger">Excluir</button></a></td>
+                    <td><?php echo $delivery->codigo ?></td>
+                    <td><?php echo $delivery->titulo ?></td>
+                    <td><?php echo $delivery->descricao ?></td>
+                    <td><?php echo date('d/m/Y', strtotime($delivery->prazo_entrega)) ?></td>
+                    <td><?php echo $delivery->entrega_concluida == 1 ? 'Concluída' : 'Em andamento' ?></td>
+                    <td><a href="update.php?id=" <?php echo $delivery->id ?>><button class="btn btn-primary">Editar</button></a></td>
+                    <td><a href="delete.php?id=" <?php echo $delivery->id ?>><button class="btn btn-danger">Excluir</button></a></td>
                 </tr>
             <?php endforeach ?>
         </tbody>
