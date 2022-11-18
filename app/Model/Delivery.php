@@ -48,6 +48,24 @@ final class Delivery
         return (new DB('entrega'))->select('id = ' . $id)->fetchObject(self::class);
     }
 
+    public function insert()
+    {
+        //DEFINIR A DATA
+    $this->data = date('Y-m-d H:i:s');
+
+    //INSERIR A VAGA NO BANCO
+    $db = new DB('entrega');
+    $this->id = $db->insert([
+                                      'titulo'    => $this->titulo,
+                                      'descricao' => $this->descricao,
+                                      'ativo'     => $this->ativo,
+                                      'data'      => $this->data
+                                    ]);
+
+    //RETORNAR SUCESSO
+    return true;
+    }
+
     public function save()
     {
         $this->deadLineDelivery = date('Y-m-d H:i:s');

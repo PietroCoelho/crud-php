@@ -15,14 +15,18 @@ class DeliveryController extends Controller
 
     public function index()
     {
-        
+
         $rs = $this->class->getDeliveries();
         return $rs;
     }
 
-    public function store(array $parametros = [])
+    public function store(array $params = [])
     {
-        $this->setParams($parametros);
-        return $this->class->insert($this->parametros);
+            $this->class->codigo = rand(0,99999);
+            $this->class->title = '';
+            $this->class->description = '';
+            $this->class->deadLineDelivery = '';
+            $this->class->deliveryCompleted = '';
+        return $this->class->insert();
     }
 }

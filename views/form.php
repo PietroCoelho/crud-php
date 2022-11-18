@@ -5,20 +5,26 @@
             <input type="hidden" name="id">
         </div>
         <div class="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" class="form-control" name="nome" placeholder="Digite seu nome aqui">
+            <label for="title">Titulo</label>
+            <input type="text" id="title" class="form-control" name="title" value="">
         </div>
 
         <div class="form-group">
-            <label for="email">E-mail</label>
-            <input type="text" id="email" class="form-control" name="email" placeholder="Digite seu email aqui">
+            <label for="description">Descrição</label>
+            <input type="text" id="description" class="form-control" name="description" value="">
         </div>
 
         <div class="form-group">
-            <label for="telefone">Telefone</label>
-            <input type="number" id="telefone" class="form-control" name="numero" placeholder="Digite seu número de telefone aqui">
+            <label for="dead_line_delivery">Prazo de Entrega</label>
+            <input type="date" id="dead_line_delivery" class="form-control" name="dead_line_delivery" value="">
         </div>
 
+        <?php if (HEADER == 'Atualizar Entrega') : ?>
+            <div class="form-group">
+                <label for="delivery_completed">Entrega Concluida</label>
+                <input type="date" id="delivery_completed" class="form-control" name="delivery_completed" value="">
+            </div>
+        <?php endif; ?>
         <div class="form-group">
             <button class="btn btn-success" type="submit">Salvar</button>
         </div>
