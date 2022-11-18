@@ -6,7 +6,7 @@ use App\Core\DB;
 use DateTime;
 use PDO;
 
-final class Deliverie
+final class Delivery
 {
     /**
      * Codigo de identificacao
@@ -40,19 +40,37 @@ final class Deliverie
 
     public function getDeliveries($where = null, $order = null, $limit = null): array
     {
-        return (new DB('correios'))->select($where, $order, $limit)->fetchAll(PDO::FETCH_CLASS, self::class);
+        return (new DB('entrega'))->select($where, $order, $limit)->fetchAll(PDO::FETCH_CLASS, self::class);
     }
 
-    public function getDeliverieById($id): Deliverie
+    public function getDeliverieById($id): Delivery
     {
-        return (new DB('correios'))->select('id = ' . $id)->fetchObject(self::class);
+        return (new DB('entrega'))->select('id = ' . $id)->fetchObject(self::class);
+    }
+
+    public function insert()
+    {
+        //DEFINIR A DATA
+    $this->data = date('Y-m-d H:i:s');
+
+    //INSERIR A VAGA NO BANCO
+    $db = new DB('entrega');
+    $this->id = $db->insert([
+                                      'titulo'    => $this->titulo,
+                                      'descricao' => $this->descricao,
+                                      'ativo'     => $this->ativo,
+                                      'data'      => $this->data
+                                    ]);
+
+    //RETORNAR SUCESSO
+    return true;
     }
 
     public function save()
     {
         $this->deadLineDelivery = date('Y-m-d H:i:s');
 
-        $dataBase = new DB('correios');
+        $dataBase = new DB('entrega');
         $this->code = $dataBase->insert([
             'titulo' => $this->title,
             'descricao' => $this->description,
