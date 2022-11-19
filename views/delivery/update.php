@@ -16,7 +16,7 @@ $delivery = new Delivery();
 $rsDelivery = $delivery->getDeliverieById($id);
 
 if (!$rsDelivery instanceof Delivery) {
-    header('location: /views/delivery/index.php?status=id-not-found');
+    header('location: /views/delivery/index.php?status=erro-instance');
 }
 if (isset($params) && !empty($params)) {
     

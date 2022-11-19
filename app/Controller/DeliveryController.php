@@ -19,7 +19,7 @@ final class DeliveryController
         return $rs;
     }
 
-    public function store(array $params = [])
+    public function store(array $params)
     {
         $this->class->title = $params['title'];
         $this->class->description = $params['description'];
@@ -28,7 +28,7 @@ final class DeliveryController
         return $this->class->insert();
     }
 
-    public function update(int $id, array $params = [])
+    public function update(int $id, array $params)
     {
 
         $this->class->id = $id;
