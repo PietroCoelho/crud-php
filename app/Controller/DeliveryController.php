@@ -22,11 +22,22 @@ class DeliveryController extends Controller
 
     public function store(array $params = [])
     {
-            $this->class->codigo = rand(0,99999);
-            $this->class->title = '';
-            $this->class->description = '';
-            $this->class->deadLineDelivery = '';
-            $this->class->deliveryCompleted = '';
+        $this->class->title = $params['title'];
+        $this->class->description = $params['description'];
+        $this->class->deadLineDelivery = $params['dead_line_delivery'];
+        $this->class->deliveryCompleted = !empty($params['delivery_completed']) ? $params['delivery_completed'] : 'false';
         return $this->class->insert();
+    }
+
+    public function update(int $id, array $params = [])
+    {
+        
+        $this->class->id = $id;
+        $this->class->title = $params['title'];
+        $this->class->description = $params['description'];
+        $this->class->deadLineDelivery = $params['dead_line_delivery'];
+        $this->class->deliveryCompleted = !empty($params['delivery_completed']) ? $params['delivery_completed'] : 'false';
+        
+        return $this->class->update();
     }
 }

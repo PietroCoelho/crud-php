@@ -9,15 +9,22 @@ define('TITLE', '');
 define('TITLE_TAB', 'Atualizar entrega');
 define('HEADER', 'Atualizar entrega');
 
-$params = !empty($_GET['id']) ? $_GET['id'] : header('location: index.php?status=id-not-found');
+$id = !empty($_GET['id']) ? $_GET['id'] : header('location: index.php?status=id-not-found');
+$params = $_POST;
 
-// if (isset($params) && !empty($params)) {
-//     $delivery = new Delivery();
-//     $deliverieController = new DeliveryController();
-//     $deliverieController->store($delivery);
-//     header('location: index.php?status=success');
-//     exit;
-// }
+$delivery = new Delivery();
+$rsDelivery = $delivery->getDeliverieById($id);
+
+if (!$rsDelivery instanceof Delivery) {
+    header('location: index.php?status=id-not-found');
+}
+if (isset($params) && !empty($params)) {
+    
+    $deliverieController = new DeliveryController();
+    $deliverieController->update($id, $params);
+    header('location: index.php?status=success');
+    exit;
+}
 
 
 include './template/header.php';

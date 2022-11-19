@@ -4,10 +4,18 @@ namespace App\Model;
 
 use App\Core\DB;
 use DateTime;
+use DateTimeImmutable;
 use PDO;
 
 final class Delivery
 {
+
+    /**
+     * Codigo de identificacao
+     * @var int
+     */
+    public int $id;
+
     /**
      * Codigo de identificacao
      * @var int
@@ -30,7 +38,7 @@ final class Delivery
      * data de entrega
      * @var DateTime
      * */
-    public DateTime $deadLineDelivery;
+    public string $deadLineDelivery;
 
     /**
      * entrega concluida
@@ -50,34 +58,30 @@ final class Delivery
 
     public function insert()
     {
-        //DEFINIR A DATA
-    $this->data = date('Y-m-d H:i:s');
 
-    //INSERIR A VAGA NO BANCO
-    $db = new DB('entrega');
-    $this->id = $db->insert([
-                                      'titulo'    => $this->titulo,
-                                      'descricao' => $this->descricao,
-                                      'ativo'     => $this->ativo,
-                                      'data'      => $this->data
-                                    ]);
+        $this->code = rand(0, 999999);
 
-    //RETORNAR SUCESSO
-    return true;
-    }
-
-    public function save()
-    {
-        $this->deadLineDelivery = date('Y-m-d H:i:s');
-
-        $dataBase = new DB('entrega');
-        $this->code = $dataBase->insert([
-            'titulo' => $this->title,
+        //INSERIR A VAGA NO BANCO
+        $db = new DB('entrega');
+        $this->id = $db->insert([
+            'codigo'    => $this->code,
+            'titulo'    => $this->title,
             'descricao' => $this->description,
-            'prazo_entrega' => $this->deadLineDelivery,
-            'entrega_concluida' => $this->deliveryCompleted
+            'prazo_entrega'     => $this->deadLineDelivery,
+            'entrega_concluida'      => $this->deliveryCompleted
         ]);
 
+        //RETORNAR SUCESSO
         return true;
+    }
+
+    public function update()
+    {
+        return (new DB('entrega'))->update('id = ' . $this->id, [
+            'titulo'    => $this->title,
+            'descricao' => $this->description,
+            'prazo_entrega'     => $this->deadLineDelivery,
+            'entrega_concluida'      => $this->deliveryCompleted
+        ]);
     }
 }

@@ -18,7 +18,7 @@ class DB
      * Nome do banco
      * @var string
      */
-    const NAME = 'correios';
+    const NAME = 'postgres';
 
     /**
      * Usuário do banco
@@ -30,7 +30,13 @@ class DB
      * Senha de acesso
      * @var string
      */
-    const PASS = '123456';
+    const PASS = 'test123';
+
+    /**
+     * Porta de conexão
+     * @var string
+     */
+    const PORT = '5434';
 
     /**
      * Nome da tabela a ser manipulada
@@ -53,7 +59,7 @@ class DB
     private function setConnection(): void
     {
         try {
-            $this->connection =  new PDO('pgsql:host=' . self::HOST . ';dbname=' . self::NAME, self::USER, self::PASS);
+            $this->connection =  new PDO('pgsql:host=' . self::HOST . ';port=' . self::PORT . ';dbname=' . self::NAME, self::USER, self::PASS);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
             die("ERROR: {$e->getMessage()}");
@@ -75,9 +81,9 @@ class DB
     public function select($where = null, $order = null, $limit = null, $fields = '*'): PDOStatement
     {
 
-        $where = strlen($where) ? 'WHERE ' . $where : '';
-        $order = strlen($order) ? 'ORDER BY ' . $order : '';
-        $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
+        $where = strlen($where) ? ' WHERE ' . $where : '';
+        $order = strlen($order) ? ' ORDER BY ' . $order : '';
+        $limit = strlen($limit) ? ' LIMIT ' . $limit : '';
 
         $query = 'SELECT ' . $fields . ' FROM ' . $this->table . '' . $where . '' . $order . '' . $limit;
         return $this->executeQuery($query);
@@ -98,7 +104,7 @@ class DB
     {
         $fields = array_keys($values);
 
-        $query = 'UPDATE ' . $this->table . 'SET ' . implode('=?,', $fields) . '=? WHERE ' . $where;
+        $query = 'UPDATE ' . $this->table . ' SET ' . implode('=?,', $fields) . '=? WHERE ' . $where;
 
         $this->executeQuery($query, array_values($values));
         return true;
