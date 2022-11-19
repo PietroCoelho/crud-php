@@ -25,7 +25,7 @@ final class DeliveryController
         $this->class->description = $params['description'];
         $this->class->deadLineDelivery = $params['dead_line_delivery'];
         $this->class->deliveryCompleted = !empty($params['delivery_completed']) ? $params['delivery_completed'] : 'false';
-        return $this->class->insert();
+        $this->class->insert();
     }
 
     public function update(int $id, array $params)
@@ -36,13 +36,12 @@ final class DeliveryController
         $this->class->description = $params['description'];
         $this->class->deadLineDelivery = $params['dead_line_delivery'];
         $this->class->deliveryCompleted = !empty($params['delivery_completed']) ? $params['delivery_completed'] : 'false';
-
-        return $this->class->update();
+        $this->class->update();
     }
 
     public function delete(int $id)
     {
         $this->class->id = $id;
-        return $this->class->delete();
+        $this->class->delete();
     }
 }

@@ -65,7 +65,7 @@ final class Delivery
             'codigo'    => $this->code,
             'titulo'    => $this->title,
             'descricao' => $this->description,
-            'prazo_entrega'     => $this->deadLineDelivery,
+            'prazo_entrega'     => $this->deadLineDelivery ? date('Y-m-d', strtotime($this->deadLineDelivery)) : date('Y-m-d'),
             'entrega_concluida'      => $this->deliveryCompleted
         ]);
 
@@ -78,7 +78,7 @@ final class Delivery
         return (new DB('entrega'))->update('id = ' . $this->id, [
             'titulo'    => $this->title,
             'descricao' => $this->description,
-            'prazo_entrega'     => $this->deadLineDelivery,
+            'prazo_entrega'     => $this->deadLineDelivery ? date('Y-m-d', strtotime($this->deadLineDelivery)) : date('Y-m-d'),
             'entrega_concluida'      => $this->deliveryCompleted
         ]);
     }
