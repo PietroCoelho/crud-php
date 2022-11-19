@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Core\Controller;
 use App\Model\Delivery;
 
-class DeliveryController extends Controller
+final class DeliveryController
 {
     public function  __construct()
     {
@@ -31,13 +30,19 @@ class DeliveryController extends Controller
 
     public function update(int $id, array $params = [])
     {
-        
+
         $this->class->id = $id;
         $this->class->title = $params['title'];
         $this->class->description = $params['description'];
         $this->class->deadLineDelivery = $params['dead_line_delivery'];
         $this->class->deliveryCompleted = !empty($params['delivery_completed']) ? $params['delivery_completed'] : 'false';
-        
+
         return $this->class->update();
+    }
+
+    public function delete(int $id)
+    {
+        $this->class->id = $id;
+        return $this->class->delete();
     }
 }

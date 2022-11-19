@@ -1,6 +1,6 @@
 <?php
 // Obrigatório para chamada das classes
-require './vendor/autoload.php';
+require '../../vendor/autoload.php';
 // Obrigatório para chamada das classes
 
 define('TITLE', '');
@@ -14,10 +14,10 @@ $params = $_POST;
 if (isset($params) && !empty($params)) {
     $delivery = new DeliveryController();
     $delivery->store($params);
-    header('location: index.php?status=success');
+    header('location: /views/delivery/index.php?status=success');
     exit;
 }
 
-include './template/header.php';
-include './views/form.php';
-include './template/footer.php';
+include '../../template/header.php';
+include 'form.php';
+include '../../template/footer.php';

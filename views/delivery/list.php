@@ -30,8 +30,11 @@
 
 
     <section>
-        <a href="./store.php">
-            <button class="btn btn-info">Inserir Dados</button>
+        <a href="/views/delivery/store.php">
+            <button class="btn btn-primary">Inserir Dados</button>
+        </a>
+        <a href="../../index.php">
+            <button class="btn btn-info">Tela inicial</button>
         </a>
     </section>
 

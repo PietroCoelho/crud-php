@@ -3,8 +3,6 @@
 namespace App\Model;
 
 use App\Core\DB;
-use DateTime;
-use DateTimeImmutable;
 use PDO;
 
 final class Delivery
@@ -36,7 +34,7 @@ final class Delivery
 
     /**
      * data de entrega
-     * @var DateTime
+     * @var string
      * */
     public string $deadLineDelivery;
 
@@ -83,5 +81,10 @@ final class Delivery
             'prazo_entrega'     => $this->deadLineDelivery,
             'entrega_concluida'      => $this->deliveryCompleted
         ]);
+    }
+
+    public function delete()
+    {
+        return (new DB('entrega'))->delete('id = ' . $this->id);
     }
 }

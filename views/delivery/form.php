@@ -43,5 +43,5 @@
     </form>
 </div>
 <div class="container">
-    <a href="./index.php"><button class="btn btn-info">voltar</button></a>
+    <a href="/views/delivery/index.php"><button class="btn btn-info">voltar</button></a>
 </div>
